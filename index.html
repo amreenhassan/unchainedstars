@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astrology & Horoscope</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #F8E1F4, #E2C6E5); /* pastel lavender and pink hues */
+            font-family: 'Cursive', sans-serif;
+            color: #4A235A; /* mystical deep purple */
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #6A0DAD;
+            margin-bottom: 20px;
+        }
+
+        form {
+            background-color: #FFF0F5; /* light lavender background */
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 400px;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border: 2px solid #D8BFD8;
+            background-color: #F0F8FF; /* pastel background */
+            font-size: 1.1em;
+        }
+
+        button {
+            background-color: #BA55D3; /* bright lavender button */
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #9932CC;
+        }
+
+        .option-container {
+            margin-top: 15px;
+            text-align: left;
+        }
+
+        .option-container label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Welcome to the Mystical Realm</h1>
+    <p>Enter your details and explore the stars!</p>
+
+    <form id="astroForm">
+        <input type="text" id="name" placeholder="Enter your name" required>
+
+        <select id="zodiacSign" required>
+            <option value="" disabled selected>Select your Zodiac sign</option>
+            <option value="Aries">Aries</option>
+            <option value="Taurus">Taurus</option>
+            <option value="Gemini">Gemini</option>
+            <option value="Cancer">Cancer</option>
+            <option value="Leo">Leo</option>
+            <option value="Virgo">Virgo</option>
+            <option value="Libra">Libra</option>
+            <option value="Scorpio">Scorpio</option>
+            <option value="Sagittarius">Sagittarius</option>
+            <option value="Capricorn">Capricorn</option>
+            <option value="Aquarius">Aquarius</option>
+            <option value="Pisces">Pisces</option>
+        </select>
+
+        <input type="date" id="birthdate" placeholder="Enter your birthdate" required>
+
+        <div class="option-container">
+            <label for="fortuneOptions">Choose an option:</label><br>
+            <input type="radio" id="fortuneCookie" name="fortune" value="fortuneCookie" required> Fortune Cookie<br>
+            <input type="radio" id="tarotReading" name="fortune" value="tarotReading"> Tarot Reading<br>
+            <input type="radio" id="yearlyPrediction" name="fortune" value="yearlyPrediction"> Yearly Prediction<br>
+            <input type="radio" id="personalityAnalysis" name="fortune" value="personalityAnalysis"> Personality Analysis<br>
+        </div>
+
+        <button type="submit">See My Fortune</button>
+    </form>
+
+    <script>
+        document.getElementById('astroForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const zodiacSign = document.getElementById('zodiacSign').value;
+            const birthdate = document.getElementById('birthdate').value;
+            const selectedOption = document.querySelector('input[name="fortune"]:checked').value;
+
+            alert(`Hello ${name}, your Zodiac sign is ${zodiacSign}, born on ${birthdate}. You selected: ${selectedOption}. Let's discover your destiny!`);
+            // Additional functionality for readings can be added here using API or predefined data.
+        });
+    </script>
+
+</body>
+</html>
