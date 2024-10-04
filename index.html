@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Astrology & Horoscope</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Sacramento&display=swap" rel="stylesheet">
     <style>
         body {
-            background: linear-gradient(to right, #F8E1F4, #E2C6E5); /* pastel lavender and pink hues */
-            font-family: 'Cursive', sans-serif;
+            background: linear-gradient(to right, #F4D3D7, #F2C3CC, #EAD5E7, #EED3E0); /* pastel Pantone hues */
+            font-family: 'Sacramento', cursive; /* Mystical handwriting font */
             color: #4A235A; /* mystical deep purple */
             text-align: center;
             margin: 0;
@@ -20,7 +21,8 @@
         }
 
         h1 {
-            font-size: 3em;
+            font-family: 'Great Vibes', cursive; /* Fancy mystical font for headings */
+            font-size: 4em;
             color: #6A0DAD;
             margin-bottom: 20px;
         }
@@ -29,7 +31,7 @@
             background-color: #FFF0F5; /* light lavender background */
             padding: 20px;
             border-radius: 15px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Softer shadow */
             width: 90%;
             max-width: 400px;
         }
@@ -41,7 +43,7 @@
             border-radius: 10px;
             border: 2px solid #D8BFD8;
             background-color: #F0F8FF; /* pastel background */
-            font-size: 1.1em;
+            font-size: 1.2em;
         }
 
         button {
@@ -63,6 +65,21 @@
         .option-container label {
             font-weight: bold;
         }
+
+        .horoscope-result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #F8E1F4;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            text-align: left;
+        }
+
+        p {
+            font-family: 'Sacramento', cursive; /* Mystical cursive font for text */
+            font-size: 1.5em;
+        }
     </style>
 </head>
 <body>
@@ -75,21 +92,21 @@
 
         <select id="zodiacSign" required>
             <option value="" disabled selected>Select your Zodiac sign</option>
-            <option value="Aries">Aries</option>
-            <option value="Taurus">Taurus</option>
-            <option value="Gemini">Gemini</option>
-            <option value="Cancer">Cancer</option>
-            <option value="Leo">Leo</option>
-            <option value="Virgo">Virgo</option>
-            <option value="Libra">Libra</option>
-            <option value="Scorpio">Scorpio</option>
-            <option value="Sagittarius">Sagittarius</option>
-            <option value="Capricorn">Capricorn</option>
-            <option value="Aquarius">Aquarius</option>
-            <option value="Pisces">Pisces</option>
+            <option value="aries">Aries</option>
+            <option value="taurus">Taurus</option>
+            <option value="gemini">Gemini</option>
+            <option value="cancer">Cancer</option>
+            <option value="leo">Leo</option>
+            <option value="virgo">Virgo</option>
+            <option value="libra">Libra</option>
+            <option value="scorpio">Scorpio</option>
+            <option value="sagittarius">Sagittarius</option>
+            <option value="capricorn">Capricorn</option>
+            <option value="aquarius">Aquarius</option>
+            <option value="pisces">Pisces</option>
         </select>
 
-        <input type="date" id="birthdate" placeholder="Enter your birthdate" required>
+        <input type="date" id="birthdate" required>
 
         <div class="option-container">
             <label for="fortuneOptions">Choose an option:</label><br>
@@ -102,17 +119,41 @@
         <button type="submit">See My Fortune</button>
     </form>
 
+    <div id="horoscope" class="horoscope-result" style="display: none;">
+        <h2>Horoscope Result</h2>
+        <p id="horoscopeText"></p>
+    </div>
+
     <script>
         document.getElementById('astroForm').addEventListener('submit', function(event) {
             event.preventDefault();
             
-            const name = document.getElementById('name').value;
             const zodiacSign = document.getElementById('zodiacSign').value;
-            const birthdate = document.getElementById('birthdate').value;
-            const selectedOption = document.querySelector('input[name="fortune"]:checked').value;
-
-            alert(`Hello ${name}, your Zodiac sign is ${zodiacSign}, born on ${birthdate}. You selected: ${selectedOption}. Let's discover your destiny!`);
-            // Additional functionality for readings can be added here using API or predefined data.
+            
+            // Fetch horoscope data from Aztro API
+            fetch(`https://aztro.sameerkumar.website/?sign=${zodiacSign}&day=today`, {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                const horoscopeText = document.getElementById('horoscopeText');
+                const horoscopeDiv = document.getElementById('horoscope');
+                
+                horoscopeText.innerHTML = `
+                    <strong>Date Range:</strong> ${data.date_range} <br>
+                    <strong>Current Day:</strong> ${data.current_date} <br>
+                    <strong>Description:</strong> ${data.description} <br>
+                    <strong>Compatibility:</strong> ${data.compatibility} <br>
+                    <strong>Mood:</strong> ${data.mood} <br>
+                    <strong>Lucky Number:</strong> ${data.lucky_number} <br>
+                    <strong>Lucky Time:</strong> ${data.lucky_time} <br>
+                `;
+                
+                horoscopeDiv.style.display = 'block';
+            })
+            .catch(error => {
+                console.error('Error fetching horoscope:', error);
+            });
         });
     </script>
 
