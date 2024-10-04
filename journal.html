@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Journal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Journal Entry</h1>
+        <textarea id="journalEntry" placeholder="Write your thoughts here..." rows="10"></textarea>
+        <button id="submitEntry">Submit and Get Feedback</button>
+
+        <div id="feedbackSection">
+            <h2>AI Feedback:</h2>
+            <p id="aiFeedback">Your feedback will appear here.</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('submitEntry').addEventListener('click', function() {
+            const entry = document.getElementById('journalEntry').value;
+            // Send the journal entry to AI API here and fetch feedback (using server-side API call)
+            document.getElementById('aiFeedback').textContent = "AI says: You are doing great!";
+        });
+    </script>
+</body>
+</html>
