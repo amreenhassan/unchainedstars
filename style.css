@@ -1,8 +1,8 @@
 /* General styling for all pages */
 body {
-    background: linear-gradient(to right, #FADADD, #EED3E0, #EAD5E7, #F2C3CC); /* Pastel lavender and pink hues */
+    background: linear-gradient(to right, #FADADD, #EAD5DC, #F2C3CC);
     font-family: 'Montserrat', sans-serif;
-    color: #4A235A; /* Mystical deep purple */
+    color: #4A235A;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,7 +11,7 @@ body {
 }
 
 .container {
-    background-color: #FFF0F5; /* Soft lavender background */
+    background-color: #FFF0F5;
     padding: 30px;
     border-radius: 20px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
@@ -26,13 +26,13 @@ h1 {
     margin-bottom: 20px;
 }
 
-input, select, button {
+input, textarea, button {
     width: 100%;
     padding: 15px;
     margin: 15px 0;
     border-radius: 10px;
     border: 2px solid #D8BFD8;
-    background-color: #F0F8FF; /* Pastel hues for inputs */
+    background-color: #F0F8FF;
     font-size: 1.2em;
 }
 
@@ -45,4 +45,8 @@ button {
 
 button:hover {
     background-color: #9932CC;
+}
+
+#feedbackSection {
+    margin-top: 30px;
 }
