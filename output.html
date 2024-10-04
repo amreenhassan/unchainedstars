@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Horoscope</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Your Horoscope</h1>
+        <div id="horoscopeOutput"></div>
+        <button onclick="window.location.href='index.html'">Start Over</button>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const zodiacSign = urlParams.get('zodiacSign');
+        const birthdate = urlParams.get('birthdate');
+        const fortuneChoice = urlParams.get('fortuneChoice');
+
+        let output = `Zodiac Sign: ${zodiacSign}<br>Birthday: ${birthdate}<br>Fortune: ${fortuneChoice}`;
+        document.getElementById('horoscopeOutput').innerHTML = output;
+    </script>
+</body>
+</html>
