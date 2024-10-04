@@ -3,158 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Astrology & Horoscope</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300&display=swap" rel="stylesheet">
-    <style>
-        body {
-            background: linear-gradient(to right, #FADADD, #F5E0E3, #EAD5DC, #EEC9D2); /* Bright pastel Pantone hues */
-            font-family: 'Montserrat', sans-serif; /* Clean sans-serif base font */
-            color: #4A235A; /* Mystical deep purple */
-            text-align: center;
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        h1 {
-            font-family: 'Great Vibes', cursive; /* Mystical fancy font */
-            font-size: 4em;
-            color: #6A0DAD;
-            margin-bottom: 20px;
-        }
-
-        form, .section {
-            display: none; /* Hide all sections initially */
-            background-color: #FFF0F5;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Softer shadow */
-            width: 90%;
-            max-width: 400px;
-            text-align: center;
-        }
-
-        .active {
-            display: block; /* Show the active section */
-        }
-
-        input, select, button {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 10px;
-            border: 2px solid #D8BFD8;
-            background-color: #F0F8FF;
-            font-size: 1.2em;
-        }
-
-        button {
-            background-color: #BA55D3; /* Bright lavender button */
-            color: white;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        button:hover {
-            background-color: #9932CC;
-        }
-    </style>
+    <title>Astrology Welcome</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <!-- Greeting Page -->
-    <div id="greetingPage" class="section active">
+    <div class="container">
         <h1>Welcome to the Mystical Realm</h1>
         <p>What's your name?</p>
-        <input type="text" id="nameInput" placeholder="Enter your name" required>
-        <button onclick="showSelectionPage()">Next</button>
+        <form action="greet.html" method="get">
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            <button type="submit">Proceed</button>
+        </form>
     </div>
-
-    <!-- Selection Page -->
-    <div id="selectionPage" class="section">
-        <h1 id="greetingText"></h1>
-        <p>Select your Zodiac sign and birthday, and choose a fortune option:</p>
-
-        <select id="zodiacSign" required>
-            <option value="" disabled selected>Select your Zodiac sign</option>
-            <option value="aries">Aries</option>
-            <option value="taurus">Taurus</option>
-            <option value="gemini">Gemini</option>
-            <option value="cancer">Cancer</option>
-            <option value="leo">Leo</option>
-            <option value="virgo">Virgo</option>
-            <option value="libra">Libra</option>
-            <option value="scorpio">Scorpio</option>
-            <option value="sagittarius">Sagittarius</option>
-            <option value="capricorn">Capricorn</option>
-            <option value="aquarius">Aquarius</option>
-            <option value="pisces">Pisces</option>
-        </select>
-
-        <input type="date" id="birthdate" required>
-
-        <p>Choose a fortune option:</p>
-        <select id="fortuneChoice" required>
-            <option value="" disabled selected>Choose a fortune</option>
-            <option value="fortuneCookie">Fortune Cookie</option>
-            <option value="tarotReading">Tarot Reading</option>
-            <option value="yearlyPrediction">Yearly Prediction</option>
-            <option value="personalityAnalysis">Personality Analysis</option>
-        </select>
-
-        <button onclick="showOutputPage()">See My Fortune</button>
-    </div>
-
-    <!-- Output Page -->
-    <div id="outputPage" class="section">
-        <h1>Your Horoscope</h1>
-        <div id="horoscopeOutput"></div>
-        <button onclick="startOver()">Start Over</button>
-    </div>
-
-    <script>
-        function showSelectionPage() {
-            const name = document.getElementById('nameInput').value;
-            if (name) {
-                document.getElementById('greetingText').innerText = `Hello, ${name}!`;
-                document.getElementById('greetingPage').classList.remove('active');
-                document.getElementById('selectionPage').classList.add('active');
-            } else {
-                alert('Please enter your name.');
-            }
-        }
-
-        function showOutputPage() {
-            const zodiacSign = document.getElementById('zodiacSign').value;
-            const birthdate = document.getElementById('birthdate').value;
-            const fortuneChoice = document.getElementById('fortuneChoice').value;
-
-            if (zodiacSign && birthdate && fortuneChoice) {
-                document.getElementById('selectionPage').classList.remove('active');
-                document.getElementById('outputPage').classList.add('active');
-
-                // Displaying horoscope based on choice
-                let output = `Zodiac Sign: ${zodiacSign}<br>Birthday: ${birthdate}<br>Fortune: ${fortuneChoice}`;
-                document.getElementById('horoscopeOutput').innerHTML = output;
-            } else {
-                alert('Please select all options.');
-            }
-        }
-
-        function startOver() {
-            document.getElementById('outputPage').classList.remove('active');
-            document.getElementById('greetingPage').classList.add('active');
-            // Reset the form
-            document.getElementById('nameInput').value = '';
-            document.getElementById('zodiacSign').value = '';
-            document.getElementById('birthdate').value = '';
-            document.getElementById('fortuneChoice').value = '';
-        }
-    </script>
-
 </body>
 </html>
